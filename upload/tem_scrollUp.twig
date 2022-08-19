@@ -1,0 +1,225 @@
+{{ header }}{{ column_left }}
+<div id="content">
+  <div class="page-header">
+    <div class="container-fluid">
+      <div class="pull-right">
+        <button type="submit" form="form-module" data-toggle="tooltip" title="{{ button_save }}" class="btn btn-primary"><i class="fa fa-save"></i></button>
+        <a href="{{ cancel }}" data-toggle="tooltip" title="{{ button_cancel }}" class="btn btn-default"><i class="fa fa-reply"></i></a></div>
+      <h1>{{ heading_title }}</h1>
+      <ul class="breadcrumb">
+        {% for breadcrumb in breadcrumbs %}
+        <li><a href="{{ breadcrumb.href }}">{{ breadcrumb.text }}</a></li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+  <div class="container-fluid">
+    {% if error_warning %}
+    <div class="alert alert-danger alert-dismissible"><i class="fa fa-exclamation-circle"></i> {{ error_warning }}
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+    </div>
+    {% endif %}
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title"><i class="fa fa-pencil"></i> {{ text_edit }}</h3>
+      </div>
+      <div class="panel-body">
+        <form action="{{ action }}" method="post" enctype="multipart/form-data" id="form-module" class="form-horizontal">
+          <div class="form-group">
+            <label class="col-sm-2 control-label" for="input-status">{{ entry_status }}</label>
+            <div class="col-sm-10">
+              <select name="module_scrollUp_status" id="input-status" class="form-control">
+                {% if module_scrollUp_status %}
+                <option value="1" selected="selected">{{ text_enabled }}</option>
+                <option value="0">{{ text_disabled }}</option>
+                {% else %}
+                <option value="1">{{ text_enabled }}</option>
+                <option value="0" selected="selected">{{ text_disabled }}</option>
+                {% endif %}
+              </select>
+            </div>
+          </div>
+		  <div class="form-group">
+            <label class="col-sm-2 control-label">Select Arrow Type (Pro version only)</label>
+            <div class="col-sm-10">
+            <label> 
+              Custom <input type="radio" value="custom" name="module_scrollUp_preference" {% if module_scrollUp_preference=="custom" %} {{ 'checked' }}{% endif %}  />
+            </label>    
+            <label>
+             Default <input type="radio" value="gallery" name="module_scrollUp_preference" {% if module_scrollUp_preference=="gallery"  %}{{ 'checked' }}{% endif %} />
+            </label>
+            </div>
+          </div>
+		  <div class="form-group">
+             <label class="control-label col-sm-2">Choose custom image (Pro version only)</label>
+             <div class="col-sm-10">
+             <a href="" id="thumb-image" data-toggle="image" class="img-thumbnail"><img src="{{module_scrollUp_image}}" alt="" title="" data-placeholder="{{placeholder}}" /></a><input type="hidden" name="module_scrollUp_image" value="{{original_path}}" id="input-image" />
+             </div>
+         </div>
+		 <div class="form-group">
+            <label class="control-label col-sm-2">Set height and width for Desktop (Pro version only)</label>
+         </div>
+         <div class="form-group">
+            <label class="col-sm-2 control-label">Height </label>
+            <div class="col-sm-10">
+                <div class="input-group">
+                <input class="form-control" type="text" name="module_scrollUp_height_desktop" value="{{module_scrollUp_height_desktop}}" id="" />
+                <span class="input-group-addon">px</span>
+                </div>
+            </div>
+         </div>
+         <div class="form-group">
+            <label class="col-sm-2 control-label">Width </label>
+            <div class="col-sm-10">
+                <div class="input-group">
+                <input class="form-control" type="text" name="module_scrollUp_width_desktop" value="{{module_scrollUp_width_desktop}}" id="" />
+                <span class="input-group-addon">px</span>
+                </div>
+            </div>
+         </div>
+		 <div class="form-group">
+            <label class="control-label col-sm-2">Set height and width for Tablet (Pro version only)</label>
+         </div>
+         <div class="form-group">
+            <label class="col-sm-2 control-label">Height </label>
+            <div class="col-sm-10">
+                <div class="input-group">
+                <input class="form-control" type="text" name="module_scrollUp_height_tablet" value="{{module_scrollUp_height_tablet}}" id="" />
+                <span class="input-group-addon">px</span>
+                </div>
+            </div>
+         </div>
+         <div class="form-group">
+            <label class="col-sm-2 control-label">Width </label>
+            <div class="col-sm-10">
+                <div class="input-group">
+                <input class="form-control" type="text" name="module_scrollUp_width_tablet" value="{{module_scrollUp_width_tablet}}" id="" />
+                <span class="input-group-addon">px</span>
+                </div>
+            </div>
+         </div>
+		 <div class="form-group">
+            <label class="control-label col-sm-2">Set height and width for Mobile (Pro version only)</label>
+         </div>
+         <div class="form-group">
+            <label class="col-sm-2 control-label">Height </label>
+            <div class="col-sm-10">
+                <div class="input-group">
+                <input class="form-control" type="text" name="module_scrollUp_height_mobile" value="{{module_scrollUp_height_mobile}}" id="" />
+                <span class="input-group-addon">px</span>
+                </div>
+            </div>
+         </div>
+         <div class="form-group">
+            <label class="col-sm-2 control-label">Width </label>
+            <div class="col-sm-10">
+                <div class="input-group">
+                <input class="form-control" type="text" name="module_scrollUp_width_mobile" value="{{module_scrollUp_width_mobile}}" id="" />
+                <span class="input-group-addon">px</span>
+                </div>
+            </div>
+         </div>
+		 <div class="form-group">
+            <label class="col-sm-2 control-label">Default images</label>
+            <div class="col-sm-10">
+            <label class="radio-inline">
+                <input type="radio" value="up-arrow2.png" name="module_scrollUp_optradio" {% if module_scrollUp_optradio=='up-arrow2.png'  %}{{ 'checked' }}{% endif %} ><img src="view/image/up-arrow2.png">
+             </label>
+             <label class="radio-inline">
+                <input type="radio" value="up-arrow3.png" name="module_scrollUp_optradio" {% if module_scrollUp_optradio=='up-arrow3.png' %}{{ 'checked' }}{% endif %}><img src="view/image/up-arrow3.png">
+             </label>
+             <label class="radio-inline">
+                <input type="radio" value="up-arrow4.png" name="module_scrollUp_optradio" {% if module_scrollUp_optradio=='up-arrow4.png' %}{{ 'checked' }}{% endif %} ><img src="view/image/up-arrow4.png">
+             </label>
+             <label class="radio-inline">
+                <input type="radio" value="up-arrow5.png" name="module_scrollUp_optradio" {% if module_scrollUp_optradio=='up-arrow5.png' %}{{ 'checked' }}{% endif %}><img src="view/image/up-arrow5.png">
+             </label>
+             <label class="radio-inline">
+                <input type="radio" value="up-arrow6.png" name="module_scrollUp_optradio" {% if module_scrollUp_optradio=='up-arrow6.png' %}{{ 'checked' }}{% endif %} ><img src="view/image/up-arrow6.png">
+             </label>
+             <label class="radio-inline">
+                <input type="radio" value="up-arrow7.png" name="module_scrollUp_optradio" {% if module_scrollUp_optradio=='up-arrow7.png' %}{{ 'checked' }}{% endif %}><img src="view/image/up-arrow7.png">
+             </label>
+             <label class="radio-inline">
+                <input type="radio" value="up-arrow8.png" name="module_scrollUp_optradio" {% if module_scrollUp_optradio=='up-arrow8.png' %}{{ 'checked' }}{% endif %}><img src="view/image/up-arrow8.png">
+             </label>
+             <label class="radio-inline">
+                <input type="radio" value="up-arrow9.png" name="module_scrollUp_optradio" {% if module_scrollUp_optradio=='up-arrow9.png' %}{{ 'checked' }}{% endif %}><img src="view/image/up-arrow9.png">
+             </label>
+             <label class="radio-inline">
+                <input type="radio" value="up-arrow10.png" name="module_scrollUp_optradio" {% if module_scrollUp_optradio=='up-arrow10.png' %}{{ 'checked' }}{% endif %}><img src="view/image/up-arrow10.png">
+             </label>
+             <label class="radio-inline">
+                <input type="radio" value="up-arrow11.png" name="module_scrollUp_optradio" {% if module_scrollUp_optradio=='up-arrow11.png' %}{{ 'checked' }}{% endif %}><img src="view/image/up-arrow11.png">
+             </label>
+             <label class="radio-inline">
+                <input type="radio" value="up-arrow12.png" name="module_scrollUp_optradio" {% if module_scrollUp_optradio=='up-arrow12.png' %}{{ 'checked' }}{% endif %}><img src="view/image/up-arrow12.png">
+             </label>
+             <label class="radio-inline">
+                <input type="radio" value="up-arrow13.png" name="module_scrollUp_optradio" {% if module_scrollUp_optradio=='up-arrow13.png' %}{{ 'checked' }}{% endif %}><img src="view/image/up-arrow13.png">
+             </label>
+             <label class="radio-inline">
+                <input type="radio" value="up-arrow14.png" name="module_scrollUp_optradio" {% if module_scrollUp_optradio=='up-arrow14.png' %}{{ 'checked' }}{% endif %}><img src="view/image/up-arrow14.png">
+             </label>
+             <label class="radio-inline">
+                <input type="radio" value="up-arrow15.png" name="module_scrollUp_optradio" {% if module_scrollUp_optradio=='up-arrow15.png' %}{{ 'checked' }}{% endif %}><img src="view/image/up-arrow15.png">
+             </label>
+             <label class="radio-inline">
+                <input type="radio" value="up-arrow16.png" name="module_scrollUp_optradio" {% if module_scrollUp_optradio=='up-arrow16.png' %}{{ 'checked' }}{% endif %}><img src="view/image/up-arrow16.png">
+             </label>
+             <label class="radio-inline">
+                <input type="radio" value="up-arrow17.png" name="module_scrollUp_optradio" {% if module_scrollUp_optradio=='up-arrow17.png' %}{{ 'checked' }}{% endif %}><img src="view/image/up-arrow17.png">
+             </label>
+             <label class="radio-inline">
+                <input type="radio" value="up-arrow19.png" name="module_scrollUp_optradio" {% if module_scrollUp_optradio=='up-arrow19.png' %}{{ 'checked' }}{% endif %}><img src="view/image/up-arrow19.png">
+             </label>
+             <label class="radio-inline">
+                <input type="radio" value="up-arrow20.png" name="module_scrollUp_optradio" {% if module_scrollUp_optradio=='up-arrow20.png' %}{{ 'checked' }}{% endif %}><img src="view/image/up-arrow20.png">
+             </label>
+             <label class="radio-inline">
+                <input type="radio" value="up-arrow21.png" name="module_scrollUp_optradio" {% if module_scrollUp_optradio=='up-arrow21.png' %}{{ 'checked' }}{% endif %}><img src="view/image/up-arrow21.png">
+             </label>
+             <label class="radio-inline">
+                <input type="radio" value="up-arrow22.png" name="module_scrollUp_optradio" {% if module_scrollUp_optradio=='up-arrow22.png' %}{{ 'checked' }}{% endif %}><img src="view/image/up-arrow22.png">
+             </label>
+             <label class="radio-inline">
+                <input type="radio" value="up-arrow23.png" name="module_scrollUp_optradio" {% if module_scrollUp_optradio=='up-arrow23.png' %}{{ 'checked' }}{% endif %}><img src="view/image/up-arrow23.png">
+             </label>
+             <label class="radio-inline">
+                <input type="radio" value="up-arrow24.png" name="module_scrollUp_optradio" {% if module_scrollUp_optradio=='up-arrow24.png' %}{{ 'checked' }}{% endif %}><img src="view/image/up-arrow24.png">
+             </label>
+             <label class="radio-inline">
+                <input type="radio" value="up-arrow25.png" name="module_scrollUp_optradio" {% if module_scrollUp_optradio=='up-arrow25.png' %}{{ 'checked' }}{% endif %}><img src="view/image/up-arrow25.png">
+             </label>
+             </div>
+         </div>
+		 <div class="form-group" >
+              <label class="control-label col-sm-2">Select Devices to display (Pro version only)</label>
+              <div class="col-sm-10">
+            <div class="checkbox-inline">
+               <label><input type="checkbox" {% if module_scrollUp_desktop==1 %}{{ "checked" }} {% endif %}value="1" name="module_scrollUp_desktop">Desktop</label>
+            </div>
+			<div class="checkbox-inline">
+               <label><input type="checkbox" {% if module_scrollUp_tablet==1 %}{{ "checked" }} {% endif %}value="1" name="module_scrollUp_tablet">Tablet</label>
+            </div>
+            <div class="checkbox-inline">
+               <label><input type="checkbox" {% if module_scrollUp_mobile==1 %}{{ "checked" }} {% endif %}value="1" name="module_scrollUp_mobile">Mobile</label>
+            </div>
+          </div>
+         </div>
+		 <div class="form-group">
+            <ul>
+                <h1>These features are in pro version:</h1>
+                <h3><font color="#D35400">Choose Custom images</font></h3>
+                <h3><font color="#D35400">Set Height and Width for Desktops, Tablets and Mobiles</font></h3>
+                <h3><font color="#D35400">Select Devices to display</font></h3>
+                <h3><font color="#D35400">For buy full version click Buy Now</font></h3>
+                 <a class="btn btn-primary" href="http://bit.ly/2tMm7lp">Buy Now</a>
+            </ul>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{{ footer }}
